@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "78C222B46D88567CB2DEBF33E4761C32F0587DD6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "78C222B46D88567CB2DEBF33E4761C32F0587DD6" : 9223372036854775807,
+    "A1CE331D7A881E3539271C844BBBD612F9367618" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F7F2AD7F-E942-4486-A245-42C51CD33123",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "78C222B46D88567CB2DEBF33E4761C32F0587DD6" : "BookSharing\/",
+    "A1CE331D7A881E3539271C844BBBD612F9367618" : "..\/..\/Documents\/AppX"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BookSharing",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BookSharing.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pranaytal\/BookSharing.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "78C222B46D88567CB2DEBF33E4761C32F0587DD6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pranaytal\/appX.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A1CE331D7A881E3539271C844BBBD612F9367618"
+    }
+  ]
+}
