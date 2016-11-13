@@ -1,0 +1,21 @@
+PODS:
+  - Alamofire (4.0.1)
+  - PagingMenuController (2.0.0)
+  - SideMenuController (0.2.0)
+  - SwiftyJSON (3.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - PagingMenuController
+  - SideMenuController (~> 0.2.0)
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  PagingMenuController: 60602bfb5421d6536c1e3097baeed601dec1d85b
+  SideMenuController: fe6ce032847d4021ac5ead7ee1b05364df5739e7
+  SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
+
+PODFILE CHECKSUM: f55b8aca094fec687868935ceac7b8d3e90349c0
+
+COCOAPODS: 1.0.1
