@@ -31,34 +31,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func signInButton(_ sender: Any) {
-        guard isValidEmail(input: usernameFeild.text) else{
-            let okAction = UIAlertAction(title: Constants.OK , style: .cancel, handler: nil)
-            showAlert(title: ErrorMessages.INVALID_CREDENTIALS_TITLE, message: ErrorMessages.INVALID_CREDENTIALS_MESSAGE, currentView: self, style: .alert, actions: okAction)
-            return
-        }
-        guard isvalidPassword(input: passwordFeild.text) else{
-            let okAction = UIAlertAction(title: Constants.OK, style: .cancel, handler: nil)
-            showAlert(message: ErrorMessages.INVALID_PASSWORD_MESSAGE, currentView: self, actions: okAction)
-            return
-        }
         
-        do{
-            let loginRes = try login(userName: usernameFeild.text, password: passwordFeild.text)
-            if loginRes != nil{
+        let loginRequest = LoginRequest(username: "string", password: "string")
+        let aFLogin = AFLogin()
+        
+        aFLogin.login(userDetails: loginRequest, completion: { (loginResponse) -> Void in
+            
+            guard loginResponse != nil else{
+                print("no response from AFLogin.login")
+                return
+            }
+            let unwrappedLoginResponse = loginResponse!
+            if case .Success(let loginResponseSuccess) = unwrappedLoginResponse{
+                //print(loginResponseSuccess.data)
+                setUserCredentialsToKeyChain(authenticationToken: loginResponseSuccess.data)
                 self.dismiss(animated: true, completion: nil)
+            }else if case .Failure(let loginResponseFailure) = unwrappedLoginResponse{
+                print(loginResponseFailure.message)
             }
-            else{
-                let okAction = UIAlertAction(title: Constants.OK, style: .cancel, handler: nil)
-                showAlert(message: ErrorMessages.PLEASE_TRY_AGAIN, currentView: self, actions: okAction)
-            }
-        }catch UnauthorizedUser.invalidCredentials {
-            let okAction = UIAlertAction(title: Constants.OK, style: .cancel, handler: nil)
-            showAlert(message: ErrorMessages.INVALID_CREDENTIALS_MESSAGE, currentView: self, actions: okAction)
             return
-        } catch let error as NSError{
-            print("error: \(error)")
-        }
-        
+        })
 
     }
     override func viewDidLoad() {
@@ -89,10 +81,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.usernameFeild.alpha = 0
         self.passwordFeild.alpha = 0
         self.signInButton.alpha = 0
-        //self.footerLabel.alpha = 0
         UIView.animate(withDuration: 0.5, animations: {
             self.titleLabel.alpha=1
-            //self.footerLabel.alpha = 1
         })
     }
     
@@ -103,7 +93,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.usernameFeild.alpha = 1
             self.passwordFeild.alpha = 1
             self.signInButton.alpha = 1
-            //self.footerLabel.alpha = 1
         })
         cSpinner.hide()
     }
@@ -112,7 +101,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         var authenticationToken : String? = nil;
 
-        let loginRequest = LoginRequest(username: "String", password: "String")
+        let loginRequest = LoginRequest(username: "string", password: "string")
         
         let aFLogin = AFLogin()
         aFLogin.login(userDetails: loginRequest, completion: { (loginResponse) -> Void in
@@ -124,6 +113,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if case .Success(let loginResponseSuccess) = unwrappedLoginResponse{
                 print(loginResponseSuccess.data)
                 authenticationToken = loginResponseSuccess.data
+                if (authenticationToken != nil){
+                    setUserCredentialsToKeyChain(authenticationToken: authenticationToken!)
+                    self.dismiss(animated: true, completion: nil)
+                }
             }else if case .Failure(let loginResponseFailure) = unwrappedLoginResponse{
                 print(loginResponseFailure.message)
             }
@@ -132,7 +125,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if (authenticationToken != nil){
             setUserCredentialsToKeyChain(authenticationToken: authenticationToken!)
         }
-        
         return authenticationToken
         
     }
