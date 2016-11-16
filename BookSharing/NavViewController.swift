@@ -1,14 +1,15 @@
 //
-//  FirstViewController.swift
+//  NavViewController.swift
 //  BookSharing
 //
-//  Created by Pranay Kumar on 16/10/16.
+//  Created by Pranay Kumar on 16/11/16.
 //  Copyright © 2016 Inos. All rights reserved.
 //
 
 import UIKit
+import SideMenuController
 
-class FirstViewController: UIViewController {
+class NavViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
